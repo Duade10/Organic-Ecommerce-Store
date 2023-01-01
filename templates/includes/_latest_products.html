@@ -1,0 +1,33 @@
+{% load static %}
+<div class="latest-product__text">
+    <h4>Latest Products</h4>
+    <div class="latest-product__slider owl-carousel">
+        <div class="latest-prdouct__slider__item">
+            {% for latest_product in latest_products1 %}
+            <a href="{{latest_product.get_absolute_url}}" class="latest-product__item">
+                <div class="latest-product__item__pic" id="test-set-bg">
+                    <img src="{{latest_product.image.url}}" alt="{{latest_product.name}}">
+                </div>
+                <div class="latest-product__item__text">
+                    <h6>{{latest_product.name}}</h6>
+                    <span>#{{latest_product.price}}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="latest-prdouct__slider__item">
+            {% for latest_product in latest_products2 %}
+            <a href="{{latest_product.get_absolute_url}}" class="latest-product__item">
+                <div class="latest-product__item__pic" id="test-set-bg">
+                    <img src="{{latest_product.image.url}}" alt="{{latest_product.name}}">
+                </div>
+                <div class="latest-product__item__text">
+                    <h6>{{latest_product.name}}</h6>
+                    <span>#{{latest_product.price}}</span>
+                </div>
+            </a>
+            {% endfor %}
+           
+        </div>
+    </div>
+</div>

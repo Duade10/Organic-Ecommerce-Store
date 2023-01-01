@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %} | About {% endblock title %}
+{% load static %}
+{% block content %}
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>About</h2>
+                        <div class="breadcrumb__option">
+                            <a href="{% url 'core:home' %}">Home</a>
+                            <span>About</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_phone"></span>
+                        <h4>Phone</h4>
+                        <p>+01-3-8888-6868</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_pin_alt"></span>
+                        <h4>Address</h4>
+                        <p>60-49 Road 11378 New York</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_clock_alt"></span>
+                        <h4>Open time</h4>
+                        <p>10:00 am to 23:00 pm</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_mail_alt"></span>
+                        <h4>Email</h4>
+                        <p>hello@colorlib.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+   
+    <!-- Contact Form Begin -->
+    <div class="contact-form spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h2>Our Mission</h2>
+                    </div>
+                </div>
+            </div>
+            <p>Our mission at Ogani is to provide fresh, locally grown produce to our customers. We believe that eating nourishing, whole foods is essential for both physical and mental well-being, and we are committed to helping our community access the highest quality fruits and vegetables.
+
+                To achieve this, we work with a network of local farmers who share our commitment to sustainable agriculture and growing produce with care. By sourcing our products directly from these farmers, we are able to offer our customers the freshest, most flavorful produce available. We also prioritize variety, offering a range of seasonal produce to keep our offerings exciting and diverse.
+                
+                In addition to providing delicious produce, we are also committed to making a positive impact on our community and the environment. We believe that eating locally grown produce not only supports the local economy, but also helps reduce the carbon footprint of transportation. We also strive to minimize waste in all aspects of our business, from using eco-friendly packaging to partnering with local organizations to donate any excess produce.
+                
+                Ultimately, our goal is to be a trusted source of fresh, healthy produce for our customers and a positive force in our community. We are committed to constantly improving and evolving in order to better serve our customers and fulfill our mission.</p>
+            
+        </div>
+    </div>
+    <!-- Contact Form End -->
+
+{% endblock content %}

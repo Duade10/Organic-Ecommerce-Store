@@ -1,0 +1,12 @@
+<aside class="col-md-3">
+<!--   SIDEBAR   -->
+ <ul class="list-group mt-5 mb-5 shadow-sm border-0 ">
+    <a class="list-group-item bg-white text-primary {% if '/dashboard/' == request.path %}active shadow{% endif %}" href="{% url 'users:user_profille' user.pk %}"> <i class="fa fa-cube"></i> Dashboard  </a>
+    <a class="list-group-item bg-white text-primary {% if '/order-history/' in request.path %}active shadow{% endif %} " href="{% url 'users:order_history' user.pk %}"> <i class="fa fa-list-ol"></i> My Order history </a>
+    <a class="list-group-item bg-white text-primary {% if '/update/' in request.path %}active shadow{% endif %}" href="{% url 'users:update' user.pk %}"> <i class="fa fa-pencil"></i> Edit Profile </a>
+    <a class="list-group-item bg-white text-primary {% if '/change_password/' in request.path %}active shadow{% endif %}" href="{% url 'users:forgot_password' %}"> <i class="fa fa-user-secret"></i> Change Password </a>
+</ul>
+<br>
+<a class="btn btn-light btn-block" href="{% url 'users:logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+<!--   SIDEBAR .//END   -->
+</aside>

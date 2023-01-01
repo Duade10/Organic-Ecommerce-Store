@@ -1,0 +1,36 @@
+{% load static %}
+        <div class="container">
+            <img id="test-div" />
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="{% url 'core:home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'core:home' %}">Home</a></li>
+                            <li class="{% if '/store/' in request.path %}active{% endif %}"><a href="{% url 'store:store' %}">Shop</a></li>
+                            <li class="{% if '/about/' in request.path %}active{% endif %}"><a href="{% url 'core:about' %}">About</a></li>
+                            <li class="{% if '/contact/' in request.path %}active{% endif %}"><a href="{% url 'contacts:contact' %}">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>{% if user.is_authenticated %}
+                            <li><a href="{% url 'users:user_profille' user.pk %}"><i class="fa fa-user"></i></a></li>
+                            {% endif %}
+                            <li><a href="{% url 'wishlists:list' %}"><i class="fa fa-heart"></i> <span id="main-header-wishlist"></span></a></li>
+                            <li><a href="{% url 'carts:cart' %}"><i class="fa fa-shopping-bag"></i> <span id="main-header-cart"></span></a></li>
+                        </ul>
+                        <div class="header__cart__price">item: #<span id="main-header-grand-total"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+ 

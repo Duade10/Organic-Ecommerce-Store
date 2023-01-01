@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+               {% include 'includes/_dashboard_sidebar.html' %}
+        <main class="col-md-9">
+            <article class="card mt-5 mb-5">
+            <header class="card-header">
+               <h3 class="font-weight-bold text-center">ACCOUNT OVERVIEW</h3>
+            </header>
+            <div class="card-body">
+                <div class="row"> 
+                    <div class="col-md-6">
+                        <div class="card w-75 shadow-sm">
+                            <div class="card-header">
+                                <h6>ACCOUNT DETAIL</h6>
+                            </div>
+                            <div class="card-body"> 
+                              <h5 class="card-title">{{user.first_name }} {{user.last_name}}</h5>
+                              {% if user.email %}
+                              <p class="card-text">{{user.email}}</p>
+                              {% endif %}
+                              {% if user.phone_number %}
+                              <p class="card-text">{{user.phone_number}}</p>
+                              {% endif %}
+                              <a href="{% url 'users:update' user.pk %}" class="btn btn-outline-primary shadow-sm btn-block">Edit Profile</a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card w-75 shadow-sm">
+                            <div class="card-header">
+                                <h6>ORDER DETAIL</h6>
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">Total Order(s)</h5>
+                              {% if order_count == 0 %}
+                              <p class="card-text">No orders yet</p>
+                              {% else %}
+                              <p class="card-text">{{order_count}}</p>
+                              <a href="{% url 'users:order_history' user.pk %}" class="btn btn-outline-primary shadow-sm btn-block">View Orders</a>
+                              {% endif %}
+                            </div>
+                          </div>
+                    </div>
+                  
+                  </div>
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+           
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+    
+    
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+{% endblock %}

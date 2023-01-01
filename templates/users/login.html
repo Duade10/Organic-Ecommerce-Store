@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %} | Login {% endblock title %}
+{% load static %}
+{% block content %}
+
+<!-- Contact Form Begin -->
+<div class="card contact-form spad border">
+    <div class="container">
+            <hr/>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h2>LOGIN</h2>
+                    </div>
+                </div>
+            </div>
+            {% if request.GET.command != 'verification' %}
+            <form class="p-3 rounded-3" method="POST" action="{% url 'users:login' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        {{form.email}}
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        {{form.password}}
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <button type="submit" class="site-btn mb-2">Login</button><br/>
+                        <a class="text-dark mt-5" href="{% url 'users:forgot_password' %}">Forgot password?</a>
+                    </div>
+                </div>
+            </form>
+            <br/>
+            <div class="col-lg-12 col-md-6 mt-2 mb-2 text-center"> 
+                <div class="col-lg-12">
+                    <a href="{% url 'users:sign_up' %}" class="site-btn m-3 btn-block">Register</a><br/>
+                    ---OR---
+                </div> 
+                <div class="col-lg-12 m-3">
+                <a href="{% url 'users:github_auth' %}" class="btn btn-block p-3 btn-outline-dark shadow" type="button"> <i class="fa fa-github-square"></i> Continue with Github</a>            </div> 
+
+            </div>
+            {% else %}
+            <p class="bg-info text-white p-2 rounded shadow-md">Please confirm your email. An email has been sent to {{request.GET.email}}</p>
+            {% endif %}
+            <hr/>
+    </div>
+</div>
+    <!-- Contact Form End -->
+
+   {% endblock content %}

@@ -1,0 +1,41 @@
+{% load static %}
+<div class="header__top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="header__top__left">
+                    <ul>
+                        <li><i class="fa fa-envelope"></i> otunlaisaac8@gmail.com</li>
+                        <li>Free Shipping for all Order of #1000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="header__top__right">
+                    <div class="header__top__right__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                    </div>
+                    <div class="header__top__right__language">
+                        <img src="{% static 'img/language.png' %}" alt="">
+                        <div>English</div>
+                        <span class="arrow_carrot-down"></span>
+                        <ul>
+                            <li><a href="#">Spanish</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__top__right__auth">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'users:logout' %}"><i class="fa fa-power-off"></i> Logout</a>
+                        {% else %}
+                        <a href="{% url 'users:login' %}"><i class="fa fa-power-off"></i> Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

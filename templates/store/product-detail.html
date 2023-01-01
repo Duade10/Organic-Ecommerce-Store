@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% block title %} | {{product.name}} {% endblock title %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock css %}
+{% block content %}
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>{{product.name}}</h2>
+                        <div class="breadcrumb__option">
+                            <a href="{% url 'core:home' %}">Home</a>
+                            <a href="">{{product.name}}</a>
+                            <span>{{product.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                src="{{product.image.url}}" alt="">
+                        </div>
+                        <div class="product__details__pic__slider owl-carousel">
+                            {% if product.product_images %}
+                            {% for image in product.product_images.all %}
+                            <img data-imgbigurl="{{image.file.url}}"
+                                src="{{image.file.url}}" alt="{{product.name}}-image">
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3>{{product.name}}</h3>
+                        <div class="product__details__rating">
+                            <i class="fa fa-star{% if product.averageRating == 0.5 %}-half-o{% elif product.averageRating < 1 %}-o {% endif %}"></i>
+                            <i class="fa fa-star{% if product.averageRating == 1.5 %}-half-o{% elif product.averageRating < 2 %}-o {% endif %}"></i>
+                            <i class="fa fa-star{% if product.averageRating == 2.5 %}-half-o{% elif product.averageRating < 3 %}-o {% endif %}"></i>
+                            <i class="fa fa-star{% if product.averageRating == 3.5 %}-half-o{% elif product.averageRating < 4 %}-o {% endif %}"></i>
+                            <i class="fa fa-star{% if product.averageRating == 4.5 %}-half-o{% elif product.averageRating < 5 %}-o {% endif %}"></i>
+                            <span>({{product.averageRating}} from {{product.countReview}} review{{ product.countReview|pluralize }})</span>
+                        </div>
+                        <div class="product__details__price">#{{product.price}}</div>
+                        <p>{{product.description}}</p>
+                        <div class="product__details__quantity add-to-cart">
+                                <button onclick="handleCartRequest({{product.id}}, 'remove')" class="border-0">-</button>
+                                 <input placeholder="Enter Amount" class="border-0 w-2" type="text" id="cart-item-{{product.id}}" onchange="handleCartRequest({{product.id}}, 'value')" value="{{singleCartItem.quantity}}">
+                                <button onclick="handleCartRequest({{product.id}}, 'add')" class="border-0">+</button>
+                        </div>
+                        <button onclick="handleCartRequest({{product.id}}, 'add', false)" class="primary-btn">ADD TO CART</button>
+                        <a onclick="wishlistRequest({{product.id}})"class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <ul>
+                            <li><b>Availability</b> <span>In Stock</span></li>
+                            <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+                            <li><b>Weight</b> <span>{{product.weight}} kg</span></li>
+                            <li><b>Share on</b>
+                                <div class="share">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                    aria-selected="false">Reviews <span>({{product.review_set.count}})</span></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>Products Infomation</h6>
+                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
+                                        suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
+                                        vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
+                                        Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
+                                        accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
+                                        pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
+                                        elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
+                                        et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
+                                        vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
+                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
+                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
+                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
+                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
+                                        porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
+                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>Products Infomation</h6>
+                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
+                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
+                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
+                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
+                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
+                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
+                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                                        Proin eget tortor risus.</p>
+                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
+                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
+                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
+                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    {% if user.is_authenticated %}
+                                    {% if review_permission == True %}
+                                    <header class="section-heading">
+                                        <h3>Write Your Review </h3>
+                                    </header>
+                            
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <form action="/api/reviews/{{product.id}}/" method="POST" class="m-2" id="review-form">
+                                                {% csrf_token %}
+                                                <label for="rating">Rating:</label>
+                                                <div class="rate">
+                                                    <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10" title="5"></label>
+                                                    <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9" class="half" title="4.5"></label>
+                                                    <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8" title="4"></label>
+                                                    <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7" class="half" title="3.5"></label>
+                                                    <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6" title="3"></label>
+                                                    <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5" class="half" title="2.5"></label>
+                                                    <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4" title="2"></label>
+                                                    <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3" class="half" title="1.5"></label>
+                                                    <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2" title="1"></label>
+                                                    <input type="radio" name="rating" id="rating1" value="0.5" required><label for="rating1" class="half" title="0.5"></label>
+                                                </div>
+                            
+                                                <br/>
+                                                <label for="subject">Subject:</label>
+                                                <input type="text" class="form-control subject border-0" name="subject" id="subject" style="border-bottom: 1px solid black !important;">
+                                                <label for="review">Review:</label>
+                                                <textarea name="review" id="" class="form-control mb-2 border-0" rows="4" style="border-bottom: 1px solid black !important;"></textarea>
+                                                <button type="submit" class="btn b-0 primary-btn">Submit Review</button>
+                                            </form>
+                                            {% else %}
+                                            <header class="section-heading">
+                                                <h3>Write Your Reviews </h3>
+                            
+                                            </header>
+                                            <p>You have to purchase ({{ product.name }})  to post a review.</p>
+                                            {% endif %}
+                                            {% else %}
+                                            <header class="section-heading">
+                                                <h3>Write Your Reviews </h3>
+                            
+                                            </header>
+                                            <p><a class="primary-btn" href="{% url 'users:login' %}">Login</a>  to post a review.</p>
+                                            <hr/>
+                                            {% endif %}
+                                            <hr/>
+                                            {% if product.review_set %}
+                            
+                                            <header class="section-heading">
+                                                <h3>Customer Reviews </h3>
+                            
+                            
+                                            </header>
+                                            {% for review in product.review_set.all %}
+                                            <article class="box mb-3 mt-3">
+                                                <div class="icontext w-100">
+                                                    <div class="text">
+                                                        <span class="date text-muted float-md-right">{{ review.created | timesince}} ago</span>
+                                                        <h6 class="mb-1">{{ review.user.get_full_name }}</h6>
+                                                    </div>
+                                                </div>
+                                                <!-- icontext.// -->
+                                                <div class="mt-3">
+                                                        <strong class="text-muted"> {{ review.subject }}</strong>
+                                                        <div class="rating">
+                                                        <span class="m-0">{{ review.rating }}</span>
+                                                        <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o {% endif %}"></i>
+                                                        <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}"></i>
+                                                        <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o {% endif %}"></i>
+                                                        <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o {% endif %}"></i>
+                                                        <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o {% endif %}"></i>
+                                                        </div>
+                                                        <p> {{ review.review }} </p>
+                                                        <hr>
+                                                </div>
+                                            </article>
+                                            {% endfor %}
+                                            {% endif %}
+                            
+                                        </div>
+                                        <!-- col.// -->
+                                    </div>
+                                    <!-- row.// -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Details Section End -->
+    {% if related_products %}
+    <!-- Related Product Section Begin -->
+    <section class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>Related Product</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                {% for product in related_products %}                    
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{{product.image.url}}">
+                            <ul class="product__item__pic__hover">
+                                <li><a onclick="wishlistRequest({{product.id}})"><i class="fa fa-heart"></i></a></li>
+                                <li><a onclick="handleCartRequest({{product.id}}, 'add')"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="{{product.get_absolute_url}}">{{product.name}}</a></h6>
+                            <h5>#{{product.price}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Related Product Section End -->
+    {% endif %}
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/wishlists.js' %}"></script>
+<script src="{% static 'js/reviews.js' %}"></script>
+{% endblock js %}
