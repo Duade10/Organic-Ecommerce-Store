@@ -69,7 +69,6 @@ class SignUpForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         user = super().save(commit=False)
         email = self.cleaned_data.get("email")
-        print(email)
         phone_number = self.cleaned_data.get("phone_number")
         username = email.split("@")[0]
         password = self.cleaned_data.get("password")
@@ -77,7 +76,6 @@ class SignUpForm(forms.ModelForm):
         user.phone_number = phone_number
         user.set_password(password)
         user.save()
-        print(user)
         return user
 
 
