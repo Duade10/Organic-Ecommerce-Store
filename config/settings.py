@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-qu@@e+_c-j54m5+#iv)j=-72l3u)u3do)7d=i&p#*qhqoe-)p8"
+SECRET_KEY = ""
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -167,16 +167,6 @@ MEDIA_ROOT = BASE_DIR / "uploads"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-GITHUB_ID = "c550e9fa427848f1c779"
-GITHUB_SECRET_KEY = "8c1b9e3efb8cc4f19919e9b767bb346db17afced"
-PAYSTACK_SECRET_KEY = "sk_test_1aeb75368fa1e3244c774ba3cf1ee09c52f85aca"
-PAYSTACK_PUBLIC_KEY = "pk_test_156f4146fc0313965732ceb3ddd1ec7c79ac60fc"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "otunlaisaac8@gmail.com"
-EMAIL_HOST_PASSWORD = "ofonqfuvcsvafuzh"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
 
 from django.contrib.messages import constants as messages
