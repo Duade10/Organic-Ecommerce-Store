@@ -52,6 +52,7 @@ class User(AbstractUser):
             "users/mail/user_verification_email.html",
             {"domain": domain, "uidb64": uid, "token": token, "first_name": self.first_name},
         )
+
         send_mail(
             "Activate your Account",
             strip_tags(html_message),
@@ -60,6 +61,7 @@ class User(AbstractUser):
             fail_silently=False,
             html_message=html_message,
         )
+        
         self.save()
 
     def send_reset_email(self, request):
@@ -101,5 +103,6 @@ class User(AbstractUser):
                             cart_item.save()
             else:
                 CartItem.objects.filter(cart=cart).update(user=self)
+
         except Cart.DoesNotExist:
             pass
