@@ -92,7 +92,6 @@ class User(AbstractUser):
                 for user_item in user_cart_item:
                     for cart_item in cart_cart_item:
                         if user_item.product.pk is cart_item.product.pk:
-                            print(user_item.product.pk, user_item.product.pk)
                             cart_item.quantity += user_item.quantity
                             cart_item.user = user_item.user
                             cart_item.save()

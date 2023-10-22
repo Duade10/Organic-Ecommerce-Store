@@ -13,7 +13,6 @@ from . import forms, mixins, models
 
 
 class LoginView(mixins.LoggedOutOnlyView, FormView):
-
     template_name = "users/login.html"
     form_class = forms.LoginForm
 
@@ -47,7 +46,6 @@ def log_out(request):
 
 
 class SignUpView(mixins.LoggedOutOnlyView, FormView):
-
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
 
